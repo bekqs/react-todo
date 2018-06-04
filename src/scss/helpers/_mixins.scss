@@ -1,0 +1,8 @@
+@mixin padding {
+    box-sizing: border-box;
+    padding: 0 2em;
+}
+
+@mixin transition($prop: all, $ease: ease-out, $dur: .2s) {
+    transition: $prop $ease $dur;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddTodo from './AddTodo';
+import TodoAdd from './TodoAdd';
 import TodoList from './TodoList';
 
 class App extends Component {
@@ -25,6 +25,10 @@ class App extends Component {
         // 2. Save todos to localStorage
         localStorage.setItem('todos', JSON.stringify(todos));
     }
+
+    toggleForm = () => {
+        document.querySelector('.todo-add').classList.toggle('active');
+    };
 
     handleChange = e => {
         // 1. Update state.inputValue to whatever we type inside form
@@ -52,7 +56,10 @@ class App extends Component {
         // 5. Update state
         this.setState({ todos, inputValue: '' });
 
-        // 6. Reset form input
+        // 6. Remove active class from the form
+        document.querySelector('.todo-add').classList.toggle('active');
+
+        // 7. Reset form input
         e.target.reset();
     };
 
@@ -70,18 +77,24 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <h2>Form</h2>
-                <AddTodo
-                    inputValue={this.state.inputValue}
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                />
+            <div className="app">
+                <h2>
+                    Hi Beka,<br />this is your to-do list.
+                </h2>
                 <TodoList
                     todos={this.state.todos}
                     handleToggle={this.handleToggle}
                     handleDelete={this.handleDelete}
                 />
+                <TodoAdd
+                    inputValue={this.state.inputValue}
+                    toggleForm={this.toggleForm}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                />
+                <button className="button add" onClick={this.toggleForm}>
+                    + Add new task
+                </button>
             </div>
         );
     }

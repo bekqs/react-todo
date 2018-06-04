@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Todo from './Todo';
+import TodoItem from './TodoItem';
 
 class TodoList extends Component {
     render() {
         return (
-            <ul className="TodoList">
+            <ul className="todo-list">
                 {this.props.todos.map((todo, index) => {
                     return (
-                        <Todo
+                        <TodoItem
                             key={index}
                             index={index}
                             todo={todo}
